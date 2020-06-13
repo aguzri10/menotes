@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:menotes/commons/primary_button.dart';
+import 'package:menotes/commons/secondary_button.dart';
 
 class WelcomePage extends StatelessWidget {
   @override
@@ -48,11 +50,10 @@ class WelcomePage extends StatelessWidget {
             ),
             Align(
               alignment: Alignment.bottomCenter,
-              child: Container(
-                width: MediaQuery.of(context).size.width,
-                height: 50,
-                color: Colors.black,
-              ),
+              child: SecondaryButton(
+                onPressed: () {},
+                textButton: 'Masuk',
+              )
             )
           ],
         ),
