@@ -49,12 +49,21 @@ class WelcomePage extends StatelessWidget {
               ),
             ),
             Align(
-              alignment: Alignment.bottomCenter,
-              child: SecondaryButton(
-                onPressed: () {},
-                textButton: 'Masuk',
-              )
-            )
+                alignment: Alignment.bottomCenter,
+                child: Column(
+                  mainAxisSize: MainAxisSize.min,
+                  children: <Widget>[
+                    SecondaryButton(
+                      onPressed: () {},
+                      textButton: 'Masuk',
+                    ),
+                    SecondaryButton(
+                      onPressed: () {},
+                      textButton: 'Daftar',
+                    ),
+                    SizedBox(height: 10)
+                  ],
+                ))
           ],
         ),
       ),
