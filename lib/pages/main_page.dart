@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:menotes/routes/constants.dart';
+import 'package:menotes/routes/routes.dart';
 
 class Root extends StatefulWidget {
   @override
@@ -10,7 +11,10 @@ class _RootState extends State<Root> {
   @override
   void initState() {
     super.initState();
-    Navigator.pushNamedAndRemoveUntil(context, welcomeRoute, (route) => false);
+    Future.delayed(Duration(milliseconds: 100), () {
+      Navigator.pushNamedAndRemoveUntil(
+          context, welcomeRoute, (route) => false);
+    });
   }
 
   @override
@@ -30,10 +34,10 @@ class MyApp extends StatelessWidget {
         appBarTheme: AppBarTheme(
           brightness: Brightness.dark,
           color: Color(0xFF29BDFB),
-          iconTheme: IconThemeData(color: Colors.white),
         ),
         buttonColor: Color(0xFF29BDFB),
       ),
+      onGenerateRoute: Router.generateRoute,
       title: 'MeNotes',
     );
   }
