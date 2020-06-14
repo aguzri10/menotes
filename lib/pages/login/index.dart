@@ -1,11 +1,25 @@
 import 'package:flutter/material.dart';
 import 'package:menotes/commons/primary_button.dart';
 import 'package:menotes/routes/constants.dart';
+import 'package:menotes/services/utils.dart';
 
-class LoginPage extends StatelessWidget {
+class LoginPage extends StatefulWidget {
   final double paddingTop;
 
   const LoginPage({Key key, @required this.paddingTop}) : super(key: key);
+
+  @override
+  _LoginPageState createState() => _LoginPageState();
+}
+
+class _LoginPageState extends State<LoginPage> {
+  String _email = '', _password = '';
+
+  bool _vallidation() {
+    if (_email.length > 1 && !Utils.emailValidation(_email) && _password.length > 7) return true;
+    return false;
+  }
+
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
@@ -15,7 +29,7 @@ class LoginPage extends StatelessWidget {
       padding:
           EdgeInsets.only(bottom: MediaQuery.of(context).viewInsets.bottom),
       child: Container(
-        margin: EdgeInsets.only(top: paddingTop),
+        margin: EdgeInsets.only(top: widget.paddingTop),
         decoration: BoxDecoration(
           color: Colors.white,
           borderRadius: BorderRadius.only(
@@ -73,6 +87,11 @@ class LoginPage extends StatelessWidget {
                                   color: Colors.black.withOpacity(0.70),
                                   fontWeight: FontWeight.w500,
                                 ),
+                                onChanged: (value) {
+                                  setState(() {
+                                    _email = value;
+                                  });
+                                },
                                 autofocus: true,
                                 decoration: InputDecoration(
                                   hintText: 'Your email in here',
@@ -105,6 +124,11 @@ class LoginPage extends StatelessWidget {
                                   color: Colors.black.withOpacity(0.70),
                                   fontWeight: FontWeight.w500,
                                 ),
+                                onChanged: (value) {
+                                  setState(() {
+                                    _password = value;
+                                  });
+                                },
                                 decoration: InputDecoration(
                                   hintText: 'Your password in here',
                                   hintStyle: textTheme.bodyText2.copyWith(
@@ -141,9 +165,13 @@ class LoginPage extends StatelessWidget {
                     child: Padding(
                       padding: const EdgeInsets.only(bottom: 10),
                       child: PrimaryButton(
-                        onPressed: () {
-                          Navigator.pushNamedAndRemoveUntil(context, mainNavigateRoute, (route) => false);
-                        },
+                        enabled: _vallidation(),
+                        onPressed: _vallidation()
+                            ? () {
+                                Navigator.pushNamedAndRemoveUntil(context,
+                                    mainNavigateRoute, (route) => false);
+                              }
+                            : null,
                         textButton: 'Masuk',
                       ),
                     ),

@@ -3,11 +3,13 @@ import 'package:flutter/material.dart';
 class PrimaryButton extends StatelessWidget {
   final VoidCallback onPressed;
   final String textButton;
+  final bool enabled;
 
   const PrimaryButton({
     Key key,
     @required this.onPressed,
     @required this.textButton,
+    this.enabled = true,
   }) : super(key: key);
 
   @override
@@ -15,13 +17,13 @@ class PrimaryButton extends StatelessWidget {
     return Material(
       color: Colors.transparent,
       child: FlatButton(
-        onPressed: onPressed,
+        onPressed: enabled ? onPressed : null,
         textColor: Colors.white,
         child: Container(
           width: MediaQuery.of(context).size.width,
           height: 36,
           decoration: BoxDecoration(
-            color: Theme.of(context).primaryColor,
+            color: enabled ? Theme.of(context).primaryColor : Colors.black.withOpacity(0.10),
             borderRadius: BorderRadius.circular(18),
           ),
           child: Center(
