@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:menotes/commons/secondary_button.dart';
 import 'package:menotes/pages/login/index.dart';
+import 'package:menotes/pages/register/index.dart';
 
 class WelcomePage extends StatelessWidget {
   @override
@@ -70,7 +71,19 @@ class WelcomePage extends StatelessWidget {
                       textButton: 'Masuk',
                     ),
                     SecondaryButton(
-                      onPressed: () {},
+                      onPressed: () {
+                        final paddingTop = MediaQuery.of(context).padding.top;
+                        showModalBottomSheet(
+                          context: context,
+                          backgroundColor: Colors.transparent,
+                          isScrollControlled: true,
+                          builder: (_) {
+                            return RegisterPage(
+                              paddingTop: paddingTop,
+                            );
+                          },
+                        );
+                      },
                       textButton: 'Daftar',
                     ),
                     SizedBox(height: 10)
