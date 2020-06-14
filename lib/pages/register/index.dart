@@ -1,11 +1,27 @@
 import 'package:flutter/material.dart';
 import 'package:menotes/commons/primary_button.dart';
 import 'package:menotes/routes/constants.dart';
+import 'package:menotes/services/utils.dart';
 
-class RegisterPage extends StatelessWidget {
+class RegisterPage extends StatefulWidget {
   final double paddingTop;
 
   const RegisterPage({Key key, @required this.paddingTop}) : super(key: key);
+
+  @override
+  _RegisterPageState createState() => _RegisterPageState();
+}
+
+class _RegisterPageState extends State<RegisterPage> {
+  String _name = '', _email = '', _password = '';
+
+  bool _vallidation() {
+    if (_name.length > 1 &&
+        !Utils.emailValidation(_email) &&
+        _password.length > 8) return true;
+    return false;
+  }
+
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
@@ -15,7 +31,7 @@ class RegisterPage extends StatelessWidget {
       padding:
           EdgeInsets.only(bottom: MediaQuery.of(context).viewInsets.bottom),
       child: Container(
-        margin: EdgeInsets.only(top: paddingTop),
+        margin: EdgeInsets.only(top: widget.paddingTop),
         decoration: BoxDecoration(
           color: Colors.white,
           borderRadius: BorderRadius.only(
@@ -73,6 +89,13 @@ class RegisterPage extends StatelessWidget {
                                   color: Colors.black.withOpacity(0.70),
                                   fontWeight: FontWeight.w500,
                                 ),
+                                onChanged: (value) {
+                                  setState(() {
+                                    _name = value;
+                                  });
+                                },
+                                textCapitalization: TextCapitalization.sentences,
+                                textInputAction: TextInputAction.next,
                                 autofocus: true,
                                 decoration: InputDecoration(
                                   hintText: 'Your name in here',
@@ -95,7 +118,7 @@ class RegisterPage extends StatelessWidget {
                                   prefixIcon: Icon(
                                     Icons.person_outline,
                                     color: theme.primaryColor,
-                                    // size: 24,
+                                    size: 20,
                                   ),
                                 ),
                               ),
@@ -105,6 +128,12 @@ class RegisterPage extends StatelessWidget {
                                   color: Colors.black.withOpacity(0.70),
                                   fontWeight: FontWeight.w500,
                                 ),
+                                onChanged: (value) {
+                                  setState(() {
+                                    _email = value;
+                                  });
+                                },
+                                textInputAction: TextInputAction.next,
                                 autofocus: true,
                                 decoration: InputDecoration(
                                   hintText: 'Your email in here',
@@ -127,16 +156,22 @@ class RegisterPage extends StatelessWidget {
                                   prefixIcon: Icon(
                                     Icons.alternate_email,
                                     color: theme.primaryColor,
-                                    // size: 24,
+                                    size: 20,
                                   ),
                                 ),
                               ),
                               SizedBox(height: 15),
-                              TextFormField(
+                              TextField(
                                 style: textTheme.bodyText2.copyWith(
                                   color: Colors.black.withOpacity(0.70),
                                   fontWeight: FontWeight.w500,
                                 ),
+                                onChanged: (value) {
+                                  setState(() {
+                                    _password = value;
+                                  });
+                                },
+                                textInputAction: TextInputAction.next,
                                 decoration: InputDecoration(
                                   hintText: 'Your password in here',
                                   hintStyle: textTheme.bodyText2.copyWith(
@@ -158,7 +193,7 @@ class RegisterPage extends StatelessWidget {
                                   prefixIcon: Icon(
                                     Icons.lock_outline,
                                     color: theme.primaryColor,
-                                    // size: 24,
+                                    size: 20,
                                   ),
                                 ),
                               ),
@@ -173,9 +208,13 @@ class RegisterPage extends StatelessWidget {
                     child: Padding(
                       padding: const EdgeInsets.only(bottom: 10),
                       child: PrimaryButton(
-                        onPressed: () {
-                          Navigator.pushNamedAndRemoveUntil(context, mainNavigateRoute, (route) => false);
-                        },
+                        enabled: _vallidation(),
+                        onPressed: _vallidation()
+                            ? () {
+                                Navigator.pushNamedAndRemoveUntil(context,
+                                    mainNavigateRoute, (route) => false);
+                              }
+                            : null,
                         textButton: 'Daftar',
                       ),
                     ),

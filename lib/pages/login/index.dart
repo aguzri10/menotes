@@ -92,6 +92,7 @@ class _LoginPageState extends State<LoginPage> {
                                     _email = value;
                                   });
                                 },
+                                textInputAction: TextInputAction.next,
                                 autofocus: true,
                                 decoration: InputDecoration(
                                   hintText: 'Your email in here',
@@ -114,7 +115,7 @@ class _LoginPageState extends State<LoginPage> {
                                   prefixIcon: Icon(
                                     Icons.person_outline,
                                     color: theme.primaryColor,
-                                    // size: 24,
+                                    size: 20,
                                   ),
                                 ),
                               ),
@@ -129,6 +130,7 @@ class _LoginPageState extends State<LoginPage> {
                                     _password = value;
                                   });
                                 },
+                                textInputAction: TextInputAction.next,
                                 decoration: InputDecoration(
                                   hintText: 'Your password in here',
                                   hintStyle: textTheme.bodyText2.copyWith(
@@ -150,7 +152,7 @@ class _LoginPageState extends State<LoginPage> {
                                   prefixIcon: Icon(
                                     Icons.lock_outline,
                                     color: theme.primaryColor,
-                                    // size: 24,
+                                    size: 20,
                                   ),
                                 ),
                               ),
