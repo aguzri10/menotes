@@ -3,6 +3,7 @@ import 'package:menotes/pages/home/index.dart';
 import 'package:menotes/pages/profile/index.dart';
 import 'package:menotes/routes/constants.dart';
 import 'package:menotes/routes/routes.dart';
+import 'package:menotes/services/assets.dart';
 
 class Root extends StatefulWidget {
   @override
@@ -80,11 +81,9 @@ class _MainNavigateState extends State<MainNavigate> {
       bottomNavigationBar: BottomNavigationBar(
         items: [
           BottomNavigationBarItem(
-            icon: Icon(
-              Icons.home,
-              color: _selectedIndex == 0
-                  ? Theme.of(context).primaryColor
-                  : Colors.grey[300],
+            icon: Image.asset(
+              _selectedIndex == 0 ? iconHomeActive : iconHomeInActive,
+              scale: 2,
             ),
             title: Text(
               'Home',
@@ -96,11 +95,9 @@ class _MainNavigateState extends State<MainNavigate> {
             ),
           ),
           BottomNavigationBarItem(
-            icon: Icon(
-              Icons.person,
-              color: _selectedIndex == 1
-                  ? Theme.of(context).primaryColor
-                  : Colors.grey[300],
+            icon: Image.asset(
+              _selectedIndex == 1 ? iconProfileActive : iconProfileInActive,
+              scale: 2,
             ),
             title: Text(
               'Home',
