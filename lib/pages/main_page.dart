@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:menotes/pages/home/index.dart';
+import 'package:menotes/pages/profile/index.dart';
 import 'package:menotes/routes/constants.dart';
 import 'package:menotes/routes/routes.dart';
 
@@ -49,11 +51,76 @@ class MainNavigate extends StatefulWidget {
 }
 
 class _MainNavigateState extends State<MainNavigate> {
+  final PageStorageBucket bucket = PageStorageBucket();
+  int _selectedIndex = 0;
+
+  final List<Widget> _pages = [
+    HomePage(
+      key: PageStorageKey('home'),
+    ),
+    ProfilePage(
+      key: PageStorageKey('profile'),
+    )
+  ];
+
+  void _onItemTapped(int index) {
+    setState(() {
+      _selectedIndex = index;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
-    return Container(
-      color: Colors.white,
-      child: Text('Home'),
+    return Scaffold(
+      backgroundColor: Colors.white,
+      body: PageStorage(
+        bucket: bucket,
+        child: _pages[_selectedIndex],
+      ),
+      bottomNavigationBar: BottomNavigationBar(
+        items: [
+          BottomNavigationBarItem(
+            icon: Icon(
+              Icons.home,
+              color: _selectedIndex == 0
+                  ? Theme.of(context).primaryColor
+                  : Colors.grey[300],
+            ),
+            title: Text(
+              'Home',
+              style: Theme.of(context).textTheme.caption.copyWith(
+                    color: _selectedIndex == 0
+                        ? Theme.of(context).primaryColor
+                        : Colors.grey[300],
+                  ),
+            ),
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(
+              Icons.person,
+              color: _selectedIndex == 1
+                  ? Theme.of(context).primaryColor
+                  : Colors.grey[300],
+            ),
+            title: Text(
+              'Home',
+              style: Theme.of(context).textTheme.caption.copyWith(
+                    color: _selectedIndex == 1
+                        ? Theme.of(context).primaryColor
+                        : Colors.grey[300],
+                  ),
+            ),
+          )
+        ],
+        backgroundColor: Color(0xFFFFFFFF),
+        currentIndex: _selectedIndex,
+        onTap: _onItemTapped,
+        elevation: 20,
+        type: BottomNavigationBarType.fixed,
+        unselectedItemColor: Colors.grey,
+        showUnselectedLabels: true,
+        selectedItemColor: Theme.of(context).primaryColor,
+      ),
     );
   }
 }

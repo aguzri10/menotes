@@ -3,11 +3,13 @@ import 'package:flutter/material.dart';
 class SecondaryButton extends StatelessWidget {
   final VoidCallback onPressed;
   final String textButton;
+  final Border border;
 
   const SecondaryButton({
     Key key,
     @required this.onPressed,
     @required this.textButton,
+    this.border,
   }) : super(key: key);
 
   @override
@@ -23,6 +25,7 @@ class SecondaryButton extends StatelessWidget {
           decoration: BoxDecoration(
             color: Colors.white,
             borderRadius: BorderRadius.circular(18),
+            border: border,
           ),
           child: Center(
             child: Text(
