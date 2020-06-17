@@ -13,10 +13,13 @@ class LoginPage extends StatefulWidget {
 }
 
 class _LoginPageState extends State<LoginPage> {
+  bool _obscureText = true;
   String _email = '', _password = '';
 
   bool _vallidation() {
-    if (_email.length > 1 && !Utils.emailValidation(_email) && _password.length > 7) return true;
+    if (_email.length > 1 &&
+        !Utils.emailValidation(_email) &&
+        _password.length > 7) return true;
     return false;
   }
 
@@ -130,6 +133,7 @@ class _LoginPageState extends State<LoginPage> {
                                     _password = value;
                                   });
                                 },
+                                obscureText: _obscureText,
                                 textInputAction: TextInputAction.next,
                                 decoration: InputDecoration(
                                   hintText: 'Your password in here',
@@ -153,6 +157,19 @@ class _LoginPageState extends State<LoginPage> {
                                     Icons.lock_outline,
                                     color: theme.primaryColor,
                                     size: 20,
+                                  ),
+                                  suffixIcon: IconButton(
+                                    icon: Icon(
+                                      _obscureText
+                                          ? Icons.visibility_off
+                                          : Icons.visibility,
+                                      color: theme.primaryColor,
+                                    ),
+                                    onPressed: () {
+                                      setState(() {
+                                        _obscureText = !_obscureText;
+                                      });
+                                    },
                                   ),
                                 ),
                               ),

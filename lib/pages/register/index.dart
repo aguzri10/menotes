@@ -13,6 +13,7 @@ class RegisterPage extends StatefulWidget {
 }
 
 class _RegisterPageState extends State<RegisterPage> {
+  bool _obscureText = true;
   String _name = '', _email = '', _password = '';
 
   bool _vallidation() {
@@ -94,7 +95,8 @@ class _RegisterPageState extends State<RegisterPage> {
                                     _name = value;
                                   });
                                 },
-                                textCapitalization: TextCapitalization.sentences,
+                                textCapitalization:
+                                    TextCapitalization.sentences,
                                 textInputAction: TextInputAction.next,
                                 autofocus: true,
                                 decoration: InputDecoration(
@@ -171,6 +173,7 @@ class _RegisterPageState extends State<RegisterPage> {
                                     _password = value;
                                   });
                                 },
+                                obscureText: _obscureText,
                                 textInputAction: TextInputAction.next,
                                 decoration: InputDecoration(
                                   hintText: 'Your password in here',
@@ -194,6 +197,19 @@ class _RegisterPageState extends State<RegisterPage> {
                                     Icons.lock_outline,
                                     color: theme.primaryColor,
                                     size: 20,
+                                  ),
+                                  suffixIcon: IconButton(
+                                    icon: Icon(
+                                      _obscureText
+                                          ? Icons.visibility_off
+                                          : Icons.visibility,
+                                      color: theme.primaryColor,
+                                    ),
+                                    onPressed: () {
+                                      setState(() {
+                                        _obscureText = !_obscureText;
+                                      });
+                                    },
                                   ),
                                 ),
                               ),
