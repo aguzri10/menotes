@@ -78,6 +78,13 @@ class _MainNavigateState extends State<MainNavigate> {
         bucket: bucket,
         child: _pages[_selectedIndex],
       ),
+      floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {},
+        tooltip: 'Add Note',
+        child: Image.asset(iconAddNote),
+        elevation: 0,
+      ),
       bottomNavigationBar: BottomNavigationBar(
         items: [
           BottomNavigationBarItem(
@@ -85,13 +92,16 @@ class _MainNavigateState extends State<MainNavigate> {
               _selectedIndex == 0 ? iconHomeActive : iconHomeInActive,
               scale: 2,
             ),
-            title: Text(
-              'Home',
-              style: Theme.of(context).textTheme.caption.copyWith(
-                    color: _selectedIndex == 0
-                        ? Theme.of(context).primaryColor
-                        : Colors.grey[300],
-                  ),
+            title: Padding(
+              padding: const EdgeInsets.only(top: 3),
+              child: Text(
+                'Home',
+                style: Theme.of(context).textTheme.caption.copyWith(
+                      color: _selectedIndex == 0
+                          ? Theme.of(context).primaryColor
+                          : Colors.grey[300],
+                    ),
+              ),
             ),
           ),
           BottomNavigationBarItem(
@@ -99,13 +109,16 @@ class _MainNavigateState extends State<MainNavigate> {
               _selectedIndex == 1 ? iconProfileActive : iconProfileInActive,
               scale: 2,
             ),
-            title: Text(
-              'Home',
-              style: Theme.of(context).textTheme.caption.copyWith(
-                    color: _selectedIndex == 1
-                        ? Theme.of(context).primaryColor
-                        : Colors.grey[300],
-                  ),
+            title: Padding(
+              padding: const EdgeInsets.only(top: 3),
+              child: Text(
+                'Profile',
+                style: Theme.of(context).textTheme.caption.copyWith(
+                      color: _selectedIndex == 1
+                          ? Theme.of(context).primaryColor
+                          : Colors.grey[300],
+                    ),
+              ),
             ),
           )
         ],
