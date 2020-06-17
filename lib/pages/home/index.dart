@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:menotes/services/assets.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({Key key}) : super(key: key);
@@ -82,6 +83,9 @@ class HomePage extends StatelessWidget {
                     ],
                   ),
                 ),
+              ),
+              SliverToBoxAdapter(
+                child: Image.asset(iconSports),
               )
             ],
           )
