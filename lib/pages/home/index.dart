@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:menotes/commons/container_shadow.dart';
 import 'package:menotes/services/assets.dart';
 
 class HomePage extends StatelessWidget {
@@ -19,10 +20,12 @@ class HomePage extends StatelessWidget {
             width: MediaQuery.of(context).size.width,
             height: MediaQuery.of(context).size.height - 60,
             decoration: BoxDecoration(
-                color: theme.primaryColor.withOpacity(0.60),
-                borderRadius: BorderRadius.only(
-                    bottomRight: Radius.circular(
-                        MediaQuery.of(context).size.height / 2))),
+              color: theme.primaryColor.withOpacity(0.60),
+              borderRadius: BorderRadius.only(
+                bottomRight:
+                    Radius.circular(MediaQuery.of(context).size.height / 2),
+              ),
+            ),
           ),
           Container(
             width: MediaQuery.of(context).size.width,
@@ -31,11 +34,14 @@ class HomePage extends StatelessWidget {
               color: theme.primaryColor,
               borderRadius: BorderRadius.only(
                 topRight: Radius.circular(
-                    MediaQuery.of(context).size.height / 4 + 60),
+                  MediaQuery.of(context).size.height / 4 + 60,
+                ),
                 bottomLeft: Radius.circular(
-                    MediaQuery.of(context).size.height / 4 + 60),
+                  MediaQuery.of(context).size.height / 4 + 60,
+                ),
                 bottomRight: Radius.circular(
-                    MediaQuery.of(context).size.height / 4 + 60),
+                  MediaQuery.of(context).size.height / 4 + 60,
+                ),
               ),
             ),
           ),
@@ -85,21 +91,7 @@ class HomePage extends StatelessWidget {
                 ),
               ),
               SliverToBoxAdapter(
-                child: Container(
-                  margin: EdgeInsets.all(15),
-                  padding: EdgeInsets.all(15),
-                  decoration: BoxDecoration(
-                    color: Colors.white,
-                    borderRadius: BorderRadius.circular(15),
-                    boxShadow: [
-                      BoxShadow(
-                        color: Colors.black.withOpacity(0.05),
-                        blurRadius: 15,
-                        offset: Offset(0, 9),
-                      )
-                      // offset: reverse ? Offset(5, 0) : Offset(0, 5))
-                    ],
-                  ),
+                child: ContainerShadow(
                   child: Row(
                     crossAxisAlignment: CrossAxisAlignment.center,
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
