@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:menotes/pages/home/index.dart';
 import 'package:menotes/pages/profile/index.dart';
 import 'package:menotes/routes/constants.dart';
@@ -13,6 +14,9 @@ class Root extends StatefulWidget {
 class _RootState extends State<Root> {
   @override
   void initState() {
+    SystemChrome.setSystemUIOverlayStyle(
+      SystemUiOverlayStyle(statusBarColor: Colors.transparent),
+    );
     super.initState();
     Future.delayed(Duration(milliseconds: 100), () {
       Navigator.pushNamedAndRemoveUntil(
@@ -31,7 +35,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       theme: ThemeData(
-        brightness: Brightness.dark,
+        brightness: Brightness.light,
         primaryColor: Color(0xFF29BDFB),
         backgroundColor: Colors.white,
         appBarTheme: AppBarTheme(
