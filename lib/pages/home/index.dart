@@ -1,3 +1,4 @@
+import 'package:flushbar/flushbar.dart';
 import 'package:flutter/material.dart';
 import 'package:menotes/commons/container_shadow.dart';
 import 'package:menotes/services/assets.dart';
@@ -97,6 +98,7 @@ class HomePage extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: <Widget>[
                       MenuItem(
+                        onTap: () {},
                         icon: iconSports,
                         text: 'Sports',
                         textTheme: textTheme,
@@ -131,20 +133,26 @@ class HomePage extends StatelessWidget {
 class MenuItem extends StatelessWidget {
   final String icon, text;
   final TextTheme textTheme;
+  final VoidCallback onTap;
 
   const MenuItem({
     Key key,
     this.icon,
     this.text,
     this.textTheme,
+    this.onTap,
   }) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return Column(
       children: <Widget>[
-        Image.asset(
-          icon,
-          scale: 2,
+        InkWell(
+          onTap: onTap,
+          child: Image.asset(
+            icon,
+            scale: 2,
+          ),
         ),
         SizedBox(height: 7),
         Text(
