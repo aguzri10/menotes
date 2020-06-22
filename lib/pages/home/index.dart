@@ -1,4 +1,3 @@
-import 'package:flushbar/flushbar.dart';
 import 'package:flutter/material.dart';
 import 'package:menotes/commons/container_shadow.dart';
 import 'package:menotes/services/assets.dart';
@@ -66,6 +65,15 @@ class HomePage extends StatelessWidget {
                           color: Colors.white,
                           shape: BoxShape.circle,
                         ),
+                        child: Center(
+                          child: Text(
+                            'A',
+                            style: textTheme.headline4.copyWith(
+                              color: theme.primaryColor,
+                              fontWeight: FontWeight.normal,
+                            ),
+                          ),
+                        ),
                       ),
                       SizedBox(width: 15),
                       Column(
@@ -95,7 +103,7 @@ class HomePage extends StatelessWidget {
                 child: ContainerShadow(
                   child: Row(
                     crossAxisAlignment: CrossAxisAlignment.center,
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    mainAxisAlignment: MainAxisAlignment.spaceAround,
                     children: <Widget>[
                       MenuItem(
                         onTap: () {},
